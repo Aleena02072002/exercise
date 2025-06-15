@@ -1,0 +1,20 @@
+{
+  "name": "exercise",
+  "type": "module",
+  "version": "1.0.0",
+  "main": "register.spec.js",
+ "scripts": {
+  "test": "mocha register.spec.js"
+},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "chromedriver": "^137.0.3",
+    "selenium-webdriver": "^4.33.0"
+  },
+  "devDependencies": {
+    "mocha": "^11.6.0"
+  }
+}
