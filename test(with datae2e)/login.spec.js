@@ -6,7 +6,7 @@ describe('Login page', function () {
 
   before(async function () {
     this.timeout(10000);
-    driver = await new Builder().forBrowser('firefox').build();
+    driver = await new Builder().forBrowser('chrome').build();
     console.log('Firefox opened');
   });
 

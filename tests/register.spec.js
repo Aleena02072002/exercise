@@ -7,7 +7,7 @@ describe('Register page', function () {
     before(
         async function () {
             this.timeout(10000);
-            driver = await new Builder().forBrowser('firefox').build();
+            driver = await new Builder().forBrowser('chrome').build();
         }
     )
 
@@ -17,7 +17,7 @@ describe('Register page', function () {
 
         try {
             const emailBox = await driver.wait(until.elementLocated(By.id('email')), 5000);
-            await emailBox.sendKeys('TrucLy_21');
+            await emailBox.sendKeys('TrucLy_22');
             const passBox = await driver.wait(until.elementLocated(By.id('password')), 5000);
             await passBox.sendKeys('Aleena02072002');
             const registerButton = await driver.wait(until.elementLocated(By.css('button')), 5000);
@@ -36,6 +36,8 @@ describe('Register page', function () {
     })
 
     it('Fail to register with account already registered', async function () {
+        this.timeout(10000);
+
         await driver.get('https://hoangduy0610.github.io/ncc-sg-automation-workshop-1/register.html');
 
         try {
