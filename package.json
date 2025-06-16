@@ -4,14 +4,15 @@
   "version": "1.0.0",
   "main": "register.spec.js",
   "scripts": {
-    "test": "mocha register.spec.js"
+    "test": "mocha tests/**/*.spec.js --timeout 60000",
+    "test-file": "mocha test"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "chromedriver": "^137.0.3",
+    "assert": "2.1.0",
     "selenium-webdriver": "^4.33.0"
   },
   "devDependencies": {
