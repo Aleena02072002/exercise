@@ -6,8 +6,9 @@ describe('Register page', function () {
     let driver;
     before(
         async function () {
+        this.timeout(30000);
+
             try {
-                this.timeout(30000);
                 driver = await new Builder().forBrowser('chrome').build();
             } catch (err) {
                 console.error("fail to launch Chrome, ", err);
@@ -28,7 +29,7 @@ describe('Register page', function () {
             const registerButton = await driver.wait(until.elementLocated(By.css('button')), 5000);
             await registerButton.click();
 
-            const successMessage = await driver.wait(until.elementLocated(By.className('alert-success'), 5000));
+            const successMessage = await driver.wait(until.elementLocated(By.className('alert-success')), 5000);
             const messageText = await successMessage.getText();
 
             assert.equal(messageText, 'Registration successful');
@@ -51,7 +52,7 @@ describe('Register page', function () {
             const registerButton = await driver.wait(until.elementLocated(By.css('button')), 5000);
             await registerButton.click();
 
-            const successMessage = await driver.wait(until.elementLocated(By.className('alert-danger'), 5000));
+            const successMessage = await driver.wait(until.elementLocated(By.className('alert-danger')), 5000);
             await successMessage.getText();
             const messageText = await successMessage.getText();
 
@@ -63,6 +64,46 @@ describe('Register page', function () {
             assert.fail('Register with existing username');
         }
     })
+
+    it('Register with empty email should fail', async function () {
+    await driver.get('https://hoangduy0610.github.io/ncc-sg-automation-workshop-1/register.html');
+
+    try {
+        const passBox = await driver.wait(until.elementLocated(By.id('password')), 5000);
+        await passBox.sendKeys('Heheh123');
+
+        const registerButton = await driver.findElement(By.css('button'));
+        await registerButton.click();
+
+        const errorMessage = await driver.wait(until.elementLocated(By.className('alert-danger')), 5000);
+        const text = await errorMessage.getText();
+
+        assert.strictEqual(text, 'Registration failed');
+    } catch (err) {
+        console.error('Test failed:', err.message);
+        assert.fail('Register with empty email test failed');
+    }
+});
+
+it('Register with empty password should fail', async function () {
+    await driver.get('https://hoangduy0610.github.io/ncc-sg-automation-workshop-1/register.html');
+
+    try {
+        const emailBox = await driver.wait(until.elementLocated(By.id('email')), 5000);
+        await emailBox.sendKeys('Heheh123');
+
+        const registerButton = await driver.findElement(By.css('button'));
+        await registerButton.click();
+
+        const errorMessage = await driver.wait(until.elementLocated(By.className('alert-danger')), 5000);
+        const text = await errorMessage.getText();
+
+        assert.strictEqual(text, 'Registration failed');
+    } catch (err) {
+        console.error('Test failed:', err.message);
+        assert.fail('Register with empty password test failed');
+    }
+});
 
     after(async function () {
         if (driver) {

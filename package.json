@@ -3,9 +3,9 @@
   "type": "module",
   "version": "1.0.0",
   "main": "register.spec.js",
- "scripts": {
-  "test": "mocha register.spec.js"
-},
+  "scripts": {
+    "test": "mocha register.spec.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
